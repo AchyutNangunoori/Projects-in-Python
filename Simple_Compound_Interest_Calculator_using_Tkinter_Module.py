@@ -1,0 +1,43 @@
+from tkinter import *
+def calculate_ci(): 
+    try:
+                principal = int(principal_field.get())  
+                rate = float(rate_field.get())
+                time = int(time_field.get()) 
+                CI = principal * (pow((1 + rate / 100), time))
+                compound_field.insert(10, CI)
+    except:
+                compound_field.insert(10, " error ")
+def clear_all():
+    principal_field.delete(0, END) 
+    rate_field.delete(0, END) 
+    time_field.delete(0, END)
+    compound_field.delete(0, END)
+    principal_field.focus_set() 
+if __name__ == "__main__": 
+    calc = Tk() 
+    calc.configure(background = 'lavender') 
+    calc.geometry("400x250") 
+    calc.title("Compound Interest Calculator") 
+    label1 = Label(calc, text = "Principal Amount(Rs) : ", fg = 'black', bg = 'gray') 
+    label2 = Label(calc, text = "Rate(%) : ", fg = 'black', bg = 'white') 
+    label3 = Label(calc, text = "Time(years) : ", fg = 'black', bg = 'white') 
+    label4 = Label(calc, text = "Compound Interest : ", fg = 'black', bg = 'white') 
+    label1.grid(row = 1, column = 0, padx = 10, pady = 10) 
+    label2.grid(row = 2, column = 0, padx = 10, pady = 10) 
+    label3.grid(row = 3, column = 0, padx = 10, pady = 10)
+    label4.grid(row = 5, column = 0, padx = 10, pady = 10)
+    principal_field = Entry(calc) 
+    rate_field = Entry(calc) 
+    time_field = Entry(calc)
+    compound_field = Entry(calc)
+    principal_field.grid(row = 1, column = 1, padx = 10, pady = 10) 
+    rate_field.grid(row = 2, column = 1, padx = 10, pady = 10) 
+    time_field.grid(row = 3, column = 1, padx = 10, pady = 10)
+    compound_field.grid(row = 5, column = 1, padx = 10, pady = 10)
+    button1 = Button(calc, text = "Submit", bg = "white", fg = "black",activebackground="gray", command = calculate_ci) 
+    button2 = Button(calc, text = "Clear", bg = "white", fg = "black",activebackground="gray", command = clear_all)
+    button1.grid(row = 4, column = 1, pady = 10) 
+    button2.grid(row = 6, column = 1, pady = 10)
+    calc.mainloop()
+    
